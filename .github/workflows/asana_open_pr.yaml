@@ -1,0 +1,28 @@
+name: Add comment & move card when creating a new PR
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  sync:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Set PR Number
+        run: echo "PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")" >> $GITHUB_ENV
+      - uses: everphone-gmbh/github-asana-action@c4d0c3aeb4768dc9dc45fb60b843c0510da20dd5
+        with:
+          #change to the project's asana-pat
+          asana-pat: 1/1198206889563669:ecc6904c64b0f4fd55a52b5d860156ff
+          action: 'add-comment'
+          #change base URL to the project's one
+          text: 'Pull Request: https://github.com/Vitor-Bukovitz/asana-actions/pull/${{env.PR_NUMBER}}'
+          is-pinned: true
+      - uses: everphone-gmbh/github-asana-action@c4d0c3aeb4768dc9dc45fb60b843c0510da20dd5
+        with:
+          #change to the project's asana-pat
+          asana-pat: 1/1198206889563669:ecc6904c64b0f4fd55a52b5d860156ff
+          action: 'move-section'
+          # change project & section according to board
+          targets: '[{"project": "Design Project Plan", "section": "Done"}]'
+          
