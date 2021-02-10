@@ -17,8 +17,8 @@ jobs:
           text: 'Pull Request: https://github.com/Vitor-Bukovitz/asana-actions/pull/${{env.PR_NUMBER}}'
           is-pinned: true
       - uses: everphone-gmbh/github-asana-action@c4d0c3aeb4768dc9dc45fb60b843c0510da20dd5
-          with:
-            asana-pat: 1/1198206889563669:ecc6904c64b0f4fd55a52b5d860156ff
-              action: 'move-section'
-              targets: '[{"project": "Design Project Plan", "section": "Done"}]'
+        with:
+          asana-pat: 1/1198206889563669:ecc6904c64b0f4fd55a52b5d860156ff
+            action: 'move-section'
+            targets: '[{"project": "Design Project Plan", "section": "Done"}]'
           
