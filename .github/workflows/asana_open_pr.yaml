@@ -14,6 +14,5 @@ jobs:
         with:
           asana-pat: 1/1198206889563669:ecc6904c64b0f4fd55a52b5d860156ff
           action: 'add-comment'
-          comment-id: "#pr:${{env.PR_NUMBER}}"
           text: 'Pull Request: https://github.com/Vitor-Bukovitz/asana-actions/pull/${{env.PR_NUMBER}}'
           is-pinned: true
