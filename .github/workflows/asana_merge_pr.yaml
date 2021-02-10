@@ -2,24 +2,25 @@
 name: Mark a task complete
 
 on:
-  push:
-    branches:
-      - main
-      - develop
+  pull_request:
+    types: [closed]
 
 jobs:
   sync:
     runs-on: ubuntu-20.04
     steps:
       - uses: everphone-gmbh/github-asana-action@c4d0c3aeb4768dc9dc45fb60b843c0510da20dd5
+        if: github.event.pull_request.merged == true
         with:
-          asana-pat: 1/1198206889563669:ecc6904c64b0f4fd55a52b5d860156ff
+          #change to the project's asana-pat in the project settings on github
+          asana-pat: ${{ secrets.ASANA_PAT }}
           action: 'complete-task'
           is-complete: true
       - uses: everphone-gmbh/github-asana-action@c4d0c3aeb4768dc9dc45fb60b843c0510da20dd5
+        if: github.event.pull_request.merged == true
         with:
-          #change to the project's asana-pat
-          asana-pat: 1/1198206889563669:ecc6904c64b0f4fd55a52b5d860156ff
+          #change to the project's asana-pat in the project settings on github
+          asana-pat: ${{ secrets.ASANA_PAT }}
           action: 'move-section'
           # change project & section according to board
           targets: '[{"project": "Design Project Plan", "section": "Release"}]'
