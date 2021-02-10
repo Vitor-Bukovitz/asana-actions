@@ -1,4 +1,4 @@
-name: Move a task to a different section on opened PR
+name: Add comment when creating a new PR
 
 on:
   pull_request:
@@ -6,11 +6,11 @@ on:
 
 jobs:
   sync:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-      - name: set pr number
+      - name: Add comment
         run: echo "PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")" >> $GITHUB_ENV
-      - uses: everphone-gmbh/github-asana-action@385529c
+      - uses: everphone-gmbh/github-asana-action@c4d0c3aeb4768dc9dc45fb60b843c0510da20dd5
         with:
           asana-pat: 1/1198206889563669:ecc6904c64b0f4fd55a52b5d860156ff
           action: 'add-comment'
