@@ -1,0 +1,19 @@
+name: Move a task to a different section on opened PR
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: set pr number
+        run: echo "::set-env name=PR_NUMBER::$(echo -n "${GITHUB_REF}" | awk 'BEGIN { FS = "/" } ; { print $3 }')"
+      - uses: everphone-gmbh/github-asana-action
+        with:
+          asana-pat: 1/1198206889563669:ecc6904c64b0f4fd55a52b5d860156ff
+          action: 'add-comment'
+          comment-id: "#pr:${{env.PR_NUMBER}}"
+          text: 'Pull Request: https://github.com/everphone-gmbh/frontend-symfony/pull/${{env.PR_NUMBER}}'
+          is-pinned: true
