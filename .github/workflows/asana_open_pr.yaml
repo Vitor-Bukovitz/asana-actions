@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: set pr number
-        run: echo "::set-env name=PR_NUMBER::$(echo -n "${GITHUB_REF}" | awk 'BEGIN { FS = "/" } ; { print $3 }')"
+        run: echo "PR_NUMBER=::$(echo -n "${GITHUB_REF}" | awk 'BEGIN { FS = "/" } ; { print $3 }')"
       - uses: everphone-gmbh/github-asana-action@385529c
         with:
           asana-pat: 1/1198206889563669:ecc6904c64b0f4fd55a52b5d860156ff
