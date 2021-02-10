@@ -16,6 +16,7 @@ jobs:
           action: 'complete-task'
           is-complete: true
       - uses: everphone-gmbh/github-asana-action@c4d0c3aeb4768dc9dc45fb60b843c0510da20dd5
+        if: github.event.pull_request.merged
         with:
           #change to the project's asana-pat
           asana-pat: 1/1198206889563669:ecc6904c64b0f4fd55a52b5d860156ff
